@@ -88,8 +88,8 @@ contract MyICOToken is ERC20Interface, Owned, SafeMath {
     // This function is called when someone sends Ether to purchase Tokens during the ICO
     // ------------------------------------------------------------------------
     function MyICOToken() public {
-        symbol = "X";
-        name = "X";
+        symbol = "BenchOpsCoin";
+        name = "BenchOpsCoin";
         decimals = 18;
         bonusEnds = now + 1 weeks;
         endDate = now + 7 weeks;

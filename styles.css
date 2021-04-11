@@ -32,7 +32,7 @@
   left: 10px;
 }
 
-.button {
+.button ,.enableEthereumButton,.sendEthButton {
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;

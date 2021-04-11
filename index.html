@@ -1,60 +1,88 @@
 <!doctype html>
 <html>
-    <head>
+
+<head>
     <!--Include the stylesheet to style HTML page-->
-    <link rel = "stylesheet" type = "text/css" href = "style.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <!--Include the web3 library to use Ethereum web3 APIs-->
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
     <!--Include the file that holds javascript functions to interact with the blockchain, call web3 functions, interact with Smart Contract -->
-    <script type="text/javascript" src="main_ICO_only.js"></script>
+    <script type="text/javascript" src="main.js"></script>
     <title>MyDappsUniNode</title>
-    </head>
-    <body>
-        <div id="headerlogo" class="header">
-            <img src="https://www.dappsuni.com/wp-content/uploads/2018/07/DappsUni640x640_white_on_black.png" alt="logo" />
-            <h1>DappsUni ICO Dashboard</h1>
-        </div>
-        <hr>
-        <br>
-        <br>
-        <div>
-            <h3 id="ICO_status">ICO Progress</h3>
-            <div id="progressbar">
-              <div id="colorbar"></div>
-            </div>
-        </div>
-        <br>
-        <br>
+</head>
 
-                <!--Input Smart Contract address in Hex-->
-        <div>
-            <h3>Purchase ICO</h3>
-            <form id="purchaseICO">
-                <br> Enter your address, amount of Ether:
-                <br>
-                <input type="text" id="purchaseICOfromaddress" name="purchaseICOfromaddress" placeholder="ex: 0xd763c07fe577d90d9dcb986db6aa3b15e31c02b9,1">
-                 <br>
-                <input type="button" class="button" value="Submit your Address" onclick="purchaseICO()">
-            </form>
+<body>
+    <div id="headerlogo" class="header">
+        <!--img src="https://www.dappsuni.com/wp-content/uploads/2018/07/DappsUni640x640_white_on_black.png" alt="logo" /-->
+        <h1>BenchOpsCoin ICO Dashboard</h1>
+    </div>
+    <hr>
+    <br>
+    <br>
+    <!--div>
+        <form id="connectChainForm">
+            <br> Enter chain address:
+            <br>
+            <input type="text" id="connectChain" name="connectChain" placeholder="ex: benchnet.dappsuni.com">
+            <br>
+            <input type="button" class="button" value="connect chain" onclick="connectChain()">
+        </form>
+        <h2>Account: <span class="showChain"></span></h2>
 
+    </div-->
+    <br>
+    <br>
+    <br>
+    <br>
+    <div>
+        <button class="enableEthereumButton">Enable Ethereum</button>
+        <button class="sendEthButton">Predict</button>
+        <h2>Account: <span class="showAccount"></span></h2>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div>
+        <h3 id="ICO_status">ICO Progress</h3>
+        <div id="progressbar">
+            <div id="colorbar"></div>
         </div>
-        <br>
-        <!--Input Smart Contract address in Hex-->
-        <div>
-            <h3> ICO Smart Contract Address</h3>
-            <form id="queryContractForm">
-                <br> Enter Contract address:
-                <br>
-                <input type="text" id="queryContract" name="queryContract" placeholder="ex: 0x229cca9e03d62bc279d4b8c5d6cbdf8415ca59ff">
-                 <br>
-                <input type="button" class="button" value="Submit Contract Address" onclick="getcontract()">
-            </form>
+    </div>
+    <br>
+    <br>
 
-          <div id="currentContract">                
-          <!-- empty -->
-          </div>
+    <!--Input Smart Contract address in Hex-->
+    <div>
+        <h3>Purchase ICO</h3>
+        <form id="purchaseICO">
+            <br> Enter your address, amount of Ether:
+            <br>
+            <input type="text" id="purchaseICOfromaddress" name="purchaseICOfromaddress" placeholder="ex: 0xd763c07fe577d90d9dcb986db6aa3b15e31c02b9,1">
+            <br>
+            <input type="button" class="button" value="Submit your Address" onclick="purchaseICO()">
+        </form>
+
+    </div>
+    <br>
+    <!--Input Smart Contract address in Hex-->
+    <div>
+        <h3> ICO Smart Contract Address</h3>
+        <form id="queryContractForm">
+            <br> Enter Contract address:
+            <br>
+            <input type="text" id="queryContract" name="queryContract" placeholder="ex: 0x229cca9e03d62bc279d4b8c5d6cbdf8415ca59ff">
+            <br>
+            <input type="button" class="button" value="Submit Contract Address" onclick="getcontract()">
+        </form>
+
+        <div id="currentContract">
+            <!-- empty -->
         </div>
+    </div>
 
-        <br>
-  </body>
+    <br>
+</body>
+
 </html>
