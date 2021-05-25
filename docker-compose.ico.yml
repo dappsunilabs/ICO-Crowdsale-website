@@ -1,0 +1,48 @@
+#docker network create -d overlay --attachable traefik_default
+# save sensitive variables in .env file
+#validate config using : docker-compose -f docker-compose.traefik-labs.yml config
+# env $(cat .env | grep ^[A-Z] | xargs) docker stack deploy -c docker-compose.ico.yml ico
+#https://thenewstack.io/tutorial-create-a-docker-swarm-with-persistent-storage-using-glusterfs/
+
+version: '3.2'
+networks:
+    traefik_default:
+      driver: overlay
+      external:
+        name:  traefik_default
+    backend:
+
+services:
+    
+    ico:
+        image: httpd
+        volumes:
+            - .:/usr/local/apache2/htdocs/
+        networks:
+            - traefik_default
+        
+        deploy:
+            labels:
+                # The labels are usefull for Traefik only
+                - "traefik.enable=true"
+                - "traefik.docker.network=traefik_default"
+                # Get the routes from http
+                - "traefik.http.routers.ico.rule=Host(`benchopsico.${DOMAIN_NAME}`)"
+                - "traefik.http.routers.ico.entrypoints=web"
+                # Redirect these routes to https
+                - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+                - "traefik.http.routers.ico.middlewares=redirect-to-https@docker"
+                # Get the routes from https
+                - "traefik.http.routers.ico-secure.rule=Host(`benchopsico.${DOMAIN_NAME}`)"
+                - "traefik.http.routers.ico-secure.entrypoints=websecure"
+                # Apply autentificiation with http challenge
+                - "traefik.http.routers.ico-secure.tls=true"
+                #- "traefik.http.routers.ganachecli-secured.tls.certresolver=myhttpchallenge"
+                - "traefik.http.services.ico.loadbalancer.server.port=80"
+                - "traefik.http.routers.ico-secure.service=ico"
+                #- "traefik.http.services.ganachecli.loadbalancer.swarm=true"
+                - "traefik.http.routers.ico.middlewares=test-auth3"
+                - "traefik.http.routers.ico-secure.middlewares=test-auth3"
+                - "traefik.http.middlewares.test-auth3.basicauth.users=${USER_HASH}"
+    
+    
